@@ -1,0 +1,10 @@
+<?php
+/**
+* Implements of Hook Init().
+*/
+
+function first_module_init() {
+	drupal_set_message('Our Module is alive');
+}
+
+?>

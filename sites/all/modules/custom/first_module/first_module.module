@@ -1,0 +1,51 @@
+<?php
+/**
+* Implements of Hook Init().
+*/
+
+function first_module_init() {
+	drupal_set_message('Our Module is alive');
+}
+
+
+/**
+*Implements of hook_menu().
+*/
+function first_module_menu(){
+	$items['first_module/custom/%'] = array(
+		'title' => 'Custom Page Mane',
+		'page callback' =>'first_module_custom',
+		'page arguments' => array(2),
+		'access arguments' => array('custom path'),
+	);
+	return $items;
+}
+
+/**
+*Custom callback function
+*/
+
+function first_module_custom($nid) {
+	
+	//Load node 1
+	$node = node_load($nid);
+	
+	//View of node 1
+	$content = node_view($node);
+
+return $content;
+}
+
+/** 
+*Implements hook_permission()
+*/
+function first_module_permission(){
+	return array(
+		'custom path' => array(
+			'title' => ('Access the custom path'),
+			'description' => ('Allow users access the custom path'),
+		),
+	);
+}
+
+?>
